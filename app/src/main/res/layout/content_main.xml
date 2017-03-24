@@ -8,4 +8,22 @@
     tools:context="myapp.anhtu.com.checkspell.activity.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="#e9e9e9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="20dp"
+        tools:layout_editor_absoluteX="10dp">
+
+        <TextView
+            android:id="@+id/txtContentMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HelloWorld"
+            android:textColor="#000"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
