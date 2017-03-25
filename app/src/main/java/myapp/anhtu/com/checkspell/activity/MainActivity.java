@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,14 +23,18 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import myapp.anhtu.com.checkspell.R;
+import myapp.anhtu.com.checkspell.entity.ContentAdapter;
+import myapp.anhtu.com.checkspell.entity.Page;
 import myapp.anhtu.com.checkspell.utils.FileUtils;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView txtContentMain;
+    ListView lv;
     private static final String TAG = "MainActivity";
     private static final int REQUEST_CODE = 6384; // onActivityResult request
     private static String path = null;
@@ -161,7 +166,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     protected void setContentMain(){
-        txtContentMain = (TextView) findViewById(R.id.txtContentMain);
+        lv = (ListView)findViewById(R.id.ListView);
+        ArrayList<Page> arr = new ArrayList<>();
+        int i = 0, j = 0;
         File file = new File(path);
         if (file.exists()) {
             StringBuilder content = new StringBuilder();
@@ -169,16 +176,28 @@ public class MainActivity extends AppCompatActivity
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 String line;
                 while ((line = br.readLine()) != null) {
+                    i++;
                     content.append(line);
                     content.append("\n");
+                    if(i>=30){
+                        j++;
+                        Page page = new Page(String.valueOf(content),j);
+                        arr.add(page);
+                        i = 0;
+                        content.setLength(0);
+                    }
                 }
                 br.close();
+                j++;
+                Page page = new Page(String.valueOf(content),j);
+                arr.add(page);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            txtContentMain.setText(content);
+            ContentAdapter adapter = new ContentAdapter(MainActivity.this,R.layout.activity_content,arr);
+            lv.setAdapter(adapter);
         } else {
-            txtContentMain.setText("Sorry file doesn't exist!!");
+            Log.e(TAG,"File not exists!");
         }
     }
 }
