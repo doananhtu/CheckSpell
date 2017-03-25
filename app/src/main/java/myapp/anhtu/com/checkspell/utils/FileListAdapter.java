@@ -1,4 +1,4 @@
-package myapp.anhtu.com.checkspell.entity;
+package myapp.anhtu.com.checkspell.utils;
 
 /**
  * Created by anhtu on 3/24/2017.

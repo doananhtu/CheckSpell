@@ -17,7 +17,7 @@ import java.io.File;
 import java.util.List;
 
 import myapp.anhtu.com.checkspell.R;
-import myapp.anhtu.com.checkspell.entity.FileListAdapter;
+import myapp.anhtu.com.checkspell.utils.FileListAdapter;
 import myapp.anhtu.com.checkspell.utils.FileLoader;
 
 

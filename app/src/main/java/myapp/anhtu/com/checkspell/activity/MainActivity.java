@@ -18,6 +18,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import myapp.anhtu.com.checkspell.R;
 import myapp.anhtu.com.checkspell.utils.FileUtils;
 
@@ -27,6 +32,8 @@ public class MainActivity extends AppCompatActivity
     TextView txtContentMain;
     private static final String TAG = "MainActivity";
     private static final int REQUEST_CODE = 6384; // onActivityResult request
+    private static String path = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +49,6 @@ public class MainActivity extends AppCompatActivity
                 showChooser();
             }
         });
-//        setContentView(fab);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -54,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //Set text for content Main.
-        txtContentMain = (TextView)findViewById(R.id.txtContentMain);
+        txtContentMain = (TextView) findViewById(R.id.txtContentMain);
     }
 
     @Override
@@ -126,6 +132,7 @@ public class MainActivity extends AppCompatActivity
             // The reason for the existence of aFileChooser
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -138,9 +145,11 @@ public class MainActivity extends AppCompatActivity
                         Log.i(TAG, "Uri = " + uri.toString());
                         try {
                             // Get the file path from the URI
-                            final String path = FileUtils.getPath(this, uri);
-                            Toast.makeText(MainActivity.this,
-                                    "File Selected: " + path, Toast.LENGTH_LONG).show();
+                            path = FileUtils.getPath(this, uri);
+                            Toast.makeText(MainActivity.this, "File Selected: " + path, Toast.LENGTH_LONG).show();
+
+                            //Set text for content main
+                            setContentMain();
                         } catch (Exception e) {
                             Log.e("FileSelectorActivity", "File select error", e);
                         }
@@ -149,5 +158,27 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    protected void setContentMain(){
+        txtContentMain = (TextView) findViewById(R.id.txtContentMain);
+        File file = new File(path);
+        if (file.exists()) {
+            StringBuilder content = new StringBuilder();
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    content.append(line);
+                    content.append("\n");
+                }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            txtContentMain.setText(content);
+        } else {
+            txtContentMain.setText("Sorry file doesn't exist!!");
+        }
     }
 }
