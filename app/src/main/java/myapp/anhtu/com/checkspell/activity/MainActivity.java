@@ -10,13 +10,14 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -28,17 +29,18 @@ import java.util.ArrayList;
 import myapp.anhtu.com.checkspell.R;
 import myapp.anhtu.com.checkspell.entity.ContentAdapter;
 import myapp.anhtu.com.checkspell.entity.Page;
-import myapp.anhtu.com.checkspell.utils.FileUtils;
+import myapp.anhtu.com.checkspell.utility.FileUtils;
+import myapp.anhtu.com.checkspell.utility.SearchUtils;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    TextView txtContentMain;
-    ListView lv;
+    private ListView lv;
+    private ArrayList<Page> arr; // Chứa các trang nội dung
     private static final String TAG = "MainActivity";
     private static final int REQUEST_CODE = 6384; // onActivityResult request
     private static String path = null;
-
+    private ContentAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +65,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        //Set text for content Main.
-        txtContentMain = (TextView) findViewById(R.id.txtContentMain);
     }
 
     @Override
@@ -81,7 +80,27 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(MainActivity.this,query,Toast.LENGTH_SHORT).show();
+                Intent searchResultActivity = new Intent(MainActivity.this, SearchResult.class);
+                String content = readFile2();
+                ArrayList<String> list = SearchUtils.search(content,query);
+                searchResultActivity.putExtra("listRe",list);
+                startActivity(searchResultActivity);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         return true;
     }
 
@@ -91,9 +110,11 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+        if(id == R.id.action_search){
             return true;
         }
 
@@ -152,7 +173,6 @@ public class MainActivity extends AppCompatActivity
                             // Get the file path from the URI
                             path = FileUtils.getPath(this, uri);
                             Toast.makeText(MainActivity.this, "File Selected: " + path, Toast.LENGTH_LONG).show();
-
                             //Set text for content main
                             setContentMain();
                         } catch (Exception e) {
@@ -167,10 +187,16 @@ public class MainActivity extends AppCompatActivity
 
     protected void setContentMain(){
         lv = (ListView)findViewById(R.id.ListView);
-        ArrayList<Page> arr = new ArrayList<>();
-        int i = 0, j = 0;
+        arr = readFile();
+        adapter = new ContentAdapter(MainActivity.this,R.layout.page,arr);
+        lv.setAdapter(adapter);
+    }
+    protected ArrayList<Page> readFile(){
+        arr = new ArrayList<>();
+        int i = 0; //line
+        int j = 0; //page number
         File file = new File(path);
-        if (file.exists()) {
+        if(file.exists()){
             StringBuilder content = new StringBuilder();
             try {
                 BufferedReader br = new BufferedReader(new FileReader(file));
@@ -179,6 +205,7 @@ public class MainActivity extends AppCompatActivity
                     i++;
                     content.append(line);
                     content.append("\n");
+                    // add page
                     if(i>=30){
                         j++;
                         Page page = new Page(String.valueOf(content),j);
@@ -194,10 +221,31 @@ public class MainActivity extends AppCompatActivity
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ContentAdapter adapter = new ContentAdapter(MainActivity.this,R.layout.activity_content,arr);
-            lv.setAdapter(adapter);
         } else {
             Log.e(TAG,"File not exists!");
         }
+        return arr;
+    }
+    protected String readFile2(){
+        if(path == null)
+            return "";
+        File file = new File(path);
+        StringBuilder content = new StringBuilder();
+        if(file.exists()){
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    content.append(line);
+                    content.append(" ");
+                }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.e(TAG,"File not exists!");
+        }
+        return String.valueOf(content);
     }
 }

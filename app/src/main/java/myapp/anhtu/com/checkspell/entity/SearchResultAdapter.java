@@ -13,16 +13,16 @@ import java.util.List;
 import myapp.anhtu.com.checkspell.R;
 
 /**
- * Created by anhtu on 3/25/2017.
+ * Created by anhtu on 3/27/2017.
  */
 
-public class ContentAdapter extends ArrayAdapter<Page>{
+public class SearchResultAdapter extends ArrayAdapter<String> {
 
-    public ContentAdapter(Context context, int resource) {
+    public SearchResultAdapter(Context context, int resource) {
         super(context, resource);
     }
 
-    public ContentAdapter(Context context, int resource, List<Page> item) {
+    public SearchResultAdapter(Context context, int resource, List<String> item) {
         super(context, resource, item);
     }
 
@@ -33,14 +33,12 @@ public class ContentAdapter extends ArrayAdapter<Page>{
         if(v == null){
             LayoutInflater vi;
             vi =LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.page,null);
+            v = vi.inflate(R.layout.search_result,null);
         }
-        Page page = getItem(position);
-        if(page != null){
-            TextView txtContentMain = (TextView) v.findViewById(R.id.txtContentMain);
-            TextView txtPageNumber = (TextView) v.findViewById(R.id.txtPageNumber);
-            txtContentMain.setText(page.getContent());
-            txtPageNumber.setText(String.valueOf(page.getPageNumber()));
+        String result = getItem(position);
+        if(result != null){
+            TextView txtSearchResult =(TextView)v.findViewById(R.id.txtSearchResult);
+            txtSearchResult.setText(result);
         }
         return v;
     }

@@ -18,7 +18,7 @@ import java.util.List;
 
 import myapp.anhtu.com.checkspell.R;
 import myapp.anhtu.com.checkspell.entity.FileListAdapter;
-import myapp.anhtu.com.checkspell.utils.FileLoader;
+import myapp.anhtu.com.checkspell.utility.FileLoader;
 
 
 public class FileListFragment extends ListFragment implements
