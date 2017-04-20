@@ -1,10 +1,12 @@
 package myapp.anhtu.com.checkspell.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by anhtu on 3/25/2017.
  */
 
-public class Page {
+public class Page implements Serializable {
     private String content;
     private Integer pageNumber;
 

@@ -1,6 +1,8 @@
 package myapp.anhtu.com.checkspell.activity;
 
+import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import myapp.anhtu.com.checkspell.R;
 import myapp.anhtu.com.checkspell.entity.ContentAdapter;
 import myapp.anhtu.com.checkspell.entity.Page;
+import myapp.anhtu.com.checkspell.entity.Result;
 import myapp.anhtu.com.checkspell.utility.FileUtils;
 import myapp.anhtu.com.checkspell.utility.SearchUtils;
 
@@ -83,15 +86,18 @@ public class MainActivity extends AppCompatActivity
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         MenuItem item = menu.findItem(R.id.action_search);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) item.getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Toast.makeText(MainActivity.this,query,Toast.LENGTH_SHORT).show();
-                Intent searchResultActivity = new Intent(MainActivity.this, SearchResult.class);
-                String content = readFile2();
-                ArrayList<String> list = SearchUtils.search(content,query);
-                searchResultActivity.putExtra("listRe",list);
+                Intent searchResultActivity = new Intent(MainActivity.this, SearchResultActivity.class);
+                ArrayList<Page> listPage = readFile();
+                ArrayList<Result> list = SearchUtils.search(listPage,query);
+                searchResultActivity.putExtra("listResult",list);
                 startActivity(searchResultActivity);
                 return false;
             }

@@ -16,13 +16,13 @@ import myapp.anhtu.com.checkspell.R;
  * Created by anhtu on 3/27/2017.
  */
 
-public class SearchResultAdapter extends ArrayAdapter<String> {
+public class SearchResultAdapter extends ArrayAdapter<Result> {
 
     public SearchResultAdapter(Context context, int resource) {
         super(context, resource);
     }
 
-    public SearchResultAdapter(Context context, int resource, List<String> item) {
+    public SearchResultAdapter(Context context, int resource, List<Result> item) {
         super(context, resource, item);
     }
 
@@ -35,10 +35,12 @@ public class SearchResultAdapter extends ArrayAdapter<String> {
             vi =LayoutInflater.from(getContext());
             v = vi.inflate(R.layout.search_result,null);
         }
-        String result = getItem(position);
+        Result result = getItem(position);
         if(result != null){
             TextView txtSearchResult =(TextView)v.findViewById(R.id.txtSearchResult);
-            txtSearchResult.setText(result);
+            TextView txtPageNum = (TextView)v.findViewById(R.id.txtPageNum);
+            txtSearchResult.setText(result.getContent());
+            txtPageNum.setText(String.valueOf(result.getPageNumber()));
         }
         return v;
     }

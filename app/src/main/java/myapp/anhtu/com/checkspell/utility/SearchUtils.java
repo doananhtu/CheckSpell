@@ -7,13 +7,16 @@ import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import myapp.anhtu.com.checkspell.entity.Page;
+import myapp.anhtu.com.checkspell.entity.Result;
+
 /**
  * Created by anhtu on 3/27/2017.
  */
 
 public class SearchUtils {
-    public static ArrayList<String> search(String content, String keywords) {
-        ArrayList<String> result = new ArrayList<>();
+    public static ArrayList<Result> search(ArrayList<Page> listPage, String keywords) {
+        ArrayList<Result> result = new ArrayList<>();
         String[] keys = keywords.trim().split(" "); //Tach thanh mang cac keyword
         //Remove Duplicate from listkey
         ArrayList<String> listKey = new ArrayList(Arrays.asList(keys));
@@ -29,13 +32,15 @@ public class SearchUtils {
 //            pattern = "\\b" + key + "\\b";
             pattern = "(\\w+ \\b" +key+"\\b)|" + "\\b" +key+ "\\b \\w+";
             Pattern pt = Pattern.compile(pattern, Pattern.MULTILINE | Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
-            Matcher mc = pt.matcher(content);
-            while (mc.find()) {
-                result.add(mc.group());
+            for(Page item: listPage){
+                Matcher mc = pt.matcher(item.getContent());
+                while (mc.find()){
+                    result.add(new Result(mc.group(),item.getPageNumber()));
+                }
             }
         }
         if (result.size() == 0) {
-            result.add("Không tìm thấy kết quả nào!");
+            result.add(new Result("Không tìm thấy kết quả nào!",0));
         }
         return result;
     }

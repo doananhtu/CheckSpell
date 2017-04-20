@@ -11,4 +11,5 @@
     <string name="empty_directory">Empty Directory</string>
     <string name="storage_removed">Storage was removed or unmounted.</string>
     <string name="error_selecting_file">Error selecting File</string>
+    <string name="search_hint">Search...</string>
 </resources>
