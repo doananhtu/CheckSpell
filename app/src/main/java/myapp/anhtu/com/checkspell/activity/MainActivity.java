@@ -1,5 +1,6 @@
 package myapp.anhtu.com.checkspell.activity;
 
+import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -19,6 +20,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -45,6 +48,8 @@ public class MainActivity extends AppCompatActivity
     private static final int REQUEST_CODE = 6384; // onActivityResult request
     private static String path = null;
     private ContentAdapter adapter;
+    Button btnOk;
+    EditText edtBegin, edtNum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,12 +141,35 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_checkSpell) {
-            Toast.makeText(MainActivity.this,"Check Spelling...",Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this, CheckSpellActivity.class);
-            ArrayList<Page> listPage = readFile();
-            ArrayList<Result> list = CheckSpellUtils.checkSpell(listPage);
-            intent.putExtra("listResult",list);
-            startActivity(intent);
+            //DIALOG
+            final Dialog dialog = new Dialog(MainActivity.this);
+            dialog.setTitle("Nhập số trang muốn kiểm tra chính tả.");
+            dialog.setContentView(R.layout.customize_dialog);
+            dialog.setCancelable(false);
+            dialog.show();
+
+            btnOk = (Button) dialog.findViewById(R.id.btnOk);
+            edtBegin = (EditText) dialog.findViewById(R.id.edtBegin);
+            edtNum = (EditText)  dialog.findViewById(R.id.edtNum);
+
+            btnOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.cancel();
+                    ArrayList<Page> listPage = readFile();
+                    Intent intent = new Intent(MainActivity.this, CheckSpellActivity.class);
+                    CheckSpellUtils checkSpell = new CheckSpellUtils();
+                    int index = 0;
+                    int num = 0;
+                    if(!edtBegin.getText().toString().isEmpty())
+                        index = Integer.parseInt(edtBegin.getText().toString());
+                    if(!edtNum.getText().toString().isEmpty())
+                        num = Integer.parseInt(edtNum.getText().toString());
+                    ArrayList<Result> list = checkSpell.checkSpell(listPage,MainActivity.this, index, num);
+                    intent.putExtra("listResult",list);
+                    startActivity(intent);
+                }
+            });
 
         } else if (id == R.id.nav_training) {
 
@@ -238,27 +267,5 @@ public class MainActivity extends AppCompatActivity
             Log.e(TAG,"File not exists!");
         }
         return arr;
-    }
-    protected String readFile2(){
-        if(path == null)
-            return "";
-        File file = new File(path);
-        StringBuilder content = new StringBuilder();
-        if(file.exists()){
-            try {
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                String line;
-                while ((line = br.readLine()) != null) {
-                    content.append(line);
-                    content.append(" ");
-                }
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            Log.e(TAG,"File not exists!");
-        }
-        return String.valueOf(content);
     }
 }
