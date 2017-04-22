@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="myapp.anhtu.com.checkspell.activity.SearchResultActivity">
+    tools:context="myapp.anhtu.com.checkspell.activity.CheckSpellActivity">
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ListView
-            android:id="@+id/listResult"
+            android:id="@+id/listSpell"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
@@ -22,4 +22,5 @@
             android:background="#d7d7d7"
             android:dividerHeight="15dp" />
     </LinearLayout>
+
 </android.support.v7.widget.LinearLayoutCompat>

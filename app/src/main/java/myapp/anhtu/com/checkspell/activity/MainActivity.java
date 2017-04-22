@@ -32,6 +32,7 @@ import myapp.anhtu.com.checkspell.R;
 import myapp.anhtu.com.checkspell.entity.ContentAdapter;
 import myapp.anhtu.com.checkspell.entity.Page;
 import myapp.anhtu.com.checkspell.entity.Result;
+import myapp.anhtu.com.checkspell.utility.CheckSpellUtils;
 import myapp.anhtu.com.checkspell.utility.FileUtils;
 import myapp.anhtu.com.checkspell.utility.SearchUtils;
 
@@ -133,9 +134,15 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_checkSpell) {
+            Toast.makeText(MainActivity.this,"Check Spelling...",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, CheckSpellActivity.class);
+            ArrayList<Page> listPage = readFile();
+            ArrayList<Result> list = CheckSpellUtils.checkSpell(listPage);
+            intent.putExtra("listResult",list);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_training) {
 
         } else if (id == R.id.nav_slideshow) {
 
