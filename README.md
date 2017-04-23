@@ -36,11 +36,15 @@ Dưới đây chỉ là một phần nhỏ trong dữ liệu về <tổ hợp â
 - **Chức năng report**: Do đặc điểm phong phú của tiếng Việt nên không tránh khỏi có những trường hợp xuất hiện các từ sai lỗi chính tả ngoại lệ. Đây là chức năng nhận sự đóng góp từ người dùng. Người dùng sẽ cung cấp một từ cho rằng đó là từ sai lỗi chính tả. Dữ liệu này sẽ được kiểm duyệt và cập nhật.
 #### 4.2. Thử nghiệm ####
 Một số hình ảnh về ứng dụng:
-
+![Check Spell](https://doc-0k-28-docs.googleusercontent.com/docs/securesc/raqjk4ggf585c3c71suo0ve4d022435s/663ar59t6k3au2ffoqkupm2uohf5vgku/1492934400000/01654361250054516177/01654361250054516177/0Byx01PgDU3c9eGYwYURQZzBKODA?e=download)
+![Check Spell](https://doc-0k-28-docs.googleusercontent.com/docs/securesc/raqjk4ggf585c3c71suo0ve4d022435s/ftn3crgmfqaoghjan5rp4h7ahbg69erh/1492934400000/01654361250054516177/01654361250054516177/0Byx01PgDU3c9Z1lsUE1YNk5qY1k?e=download)
+![Check Spell](https://doc-0c-28-docs.googleusercontent.com/docs/securesc/raqjk4ggf585c3c71suo0ve4d022435s/20d173q8t4e74qnldo4qopu62peqdbnd/1492934400000/01654361250054516177/01654361250054516177/0Byx01PgDU3c9S3BReXJ4SlNLdHM?e=download)
+![Check Spell](https://doc-08-28-docs.googleusercontent.com/docs/securesc/raqjk4ggf585c3c71suo0ve4d022435s/jf6r70i2n8vk34hll03j5frs2nm82c1b/1492934400000/01654361250054516177/01654361250054516177/0Byx01PgDU3c9M3BNelNfdExPZkE?e=download)
 ---
 ### 5. Kết luận ###
 - Ứng dụng này hiện chưa phải là một ứng dụng hoàn chỉnh và khả năng làm việc với độ chính xác cũng chưa cao. Do thời gian nghiên cứu và làm project có hạn nên không tránh khỏi những thiếu sót trong việc xây dựng ứng dụng. Do tính chất học hỏi của ứng dụng nên ứng dụng  sẽ dần hoàn thiện theo thời gian.
 ----
 Đoàn Anh Tú
 Hanoi University of Science and Technology
+----
 Ha Noi, ngày 23/4/2017
