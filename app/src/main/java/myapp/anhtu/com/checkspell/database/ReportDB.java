@@ -8,19 +8,22 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import myapp.anhtu.com.checkspell.entity.Report;
+
 /**
- * Created by anhtu on 4/22/2017.
+ * Created by anhtu on 4/23/2017.
  */
 
-public class ToHopAmGiua extends SQLiteOpenHelper {
+public class ReportDB extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "AmGiua";
+    private static final String DATABASE_NAME = "Report";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "amgiua";
+    private static final String TABLE_NAME = "report";
     private static final String KEY_ID = "id";
     private static final String KEY_CONTENT = "content";
+    private static final String KEY_DESCRIP = "description";
 
-    public ToHopAmGiua(Context context) {
+    public ReportDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -29,7 +32,8 @@ public class ToHopAmGiua extends SQLiteOpenHelper {
         String sql = String.format("CREATE TABLE IF NOT EXISTS " +
                 "%s" +
                 "(%s INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
-                "%s VARCHAR)",TABLE_NAME,KEY_ID,KEY_CONTENT);
+                "%s VARCHAR, " +
+                "%s VARCHAR)", TABLE_NAME, KEY_ID, KEY_CONTENT, KEY_DESCRIP);
         db.execSQL(sql);
     }
 
@@ -40,30 +44,32 @@ public class ToHopAmGiua extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addAmGiua(String amGiua){
+    public void addReport(String content, String description){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_CONTENT,amGiua);
-        db.insertWithOnConflict(TABLE_NAME,null,values,SQLiteDatabase.CONFLICT_IGNORE);
+        values.put(KEY_CONTENT,content);
+        values.put(KEY_DESCRIP,description);
+        db.insert(TABLE_NAME,null,values);
         db.close();
     }
 
-    public ArrayList<String> getAllAmGiua(){
-        ArrayList<String> arrAmGiua = new ArrayList<>();
+    public ArrayList<Report> getAllReport(){
+        ArrayList<Report> arrReport = new ArrayList<>();
         String sql = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql,null);
         cursor.moveToFirst();
 
         while(cursor.isAfterLast()==false){
-            String str = new String(cursor.getString(1));
-            arrAmGiua.add(str);
+            String content = new String(cursor.getString(1));
+            String description = new String(cursor.getString(2));
+            arrReport.add(new Report(content,description));
             cursor.moveToNext();
         }
-        return arrAmGiua;
+        return arrReport;
     }
 
-    public void delAllAmGiua(){
+    public void delAllReport(){
         SQLiteDatabase db = getWritableDatabase();
         String sql = "DELETE * FROM " + TABLE_NAME;
         db.delete(TABLE_NAME,null,null);

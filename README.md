@@ -29,3 +29,18 @@ Dưới đây chỉ là một phần nhỏ trong dữ liệu về <tổ hợp â
 ----------
 
 ### **4. Cài đặt ứng dụng và thử nghiệm.** ###
+#### 4.1. Chức năng. ####
+- **Chức năng tìm kiếm**: Nhập vào một xâu và tìm kiểm theo từng từ đơn => Kết quả trả về là danh sách các từ đó được tìm thấy trong văn bản đi kèm với một từ trước hoặc sau nó. (Có đi kèm với số trang).
+- **Chức năng kiểm tra chính tả**: Đây là chức năng chính. Để sử dụng cần mở file văn bản trước tiên. Kết quả trả về là danh sách các từ sai lỗi chính tả. (Có đi kèm với số trang).
+- **Chức năng học hỏi từ người dùng**: Để phát triển và hoàn thiện khả năng kiểm tra chính tả của tiếng Việt.
+- **Chức năng report**: Do đặc điểm phong phú của tiếng Việt nên không tránh khỏi có những trường hợp xuất hiện các từ sai lỗi chính tả ngoại lệ. Đây là chức năng nhận sự đóng góp từ người dùng. Người dùng sẽ cung cấp một từ cho rằng đó là từ sai lỗi chính tả. Dữ liệu này sẽ được kiểm duyệt và cập nhật.
+#### 4.2. Thử nghiệm ####
+Một số hình ảnh về ứng dụng:
+
+---
+### 5. Kết luận ###
+- Ứng dụng này hiện chưa phải là một ứng dụng hoàn chỉnh và khả năng làm việc với độ chính xác cũng chưa cao. Do thời gian nghiên cứu và làm project có hạn nên không tránh khỏi những thiếu sót trong việc xây dựng ứng dụng. Do tính chất học hỏi của ứng dụng nên ứng dụng  sẽ dần hoàn thiện theo thời gian.
+----
+Đoàn Anh Tú
+Hanoi University of Science and Technology
+Ha Noi, ngày 23/4/2017

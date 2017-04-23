@@ -35,9 +35,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import myapp.anhtu.com.checkspell.R;
+import myapp.anhtu.com.checkspell.database.ReportDB;
 import myapp.anhtu.com.checkspell.database.ToHopAmGiua;
 import myapp.anhtu.com.checkspell.entity.ContentAdapter;
 import myapp.anhtu.com.checkspell.entity.Page;
+import myapp.anhtu.com.checkspell.entity.Report;
 import myapp.anhtu.com.checkspell.entity.Result;
 import myapp.anhtu.com.checkspell.utility.CheckSpellUtils;
 import myapp.anhtu.com.checkspell.utility.FileUtils;
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity
     private static String path = null;
     private ContentAdapter adapter;
     Button btnOk;
-    EditText edtBegin, edtNum;
+    EditText edtBegin, edtNum, edtSpell, edtComment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,8 +181,10 @@ public class MainActivity extends AppCompatActivity
             File sdCard = Environment.getExternalStorageDirectory();
             File dir = new File (sdCard.getAbsolutePath() + "/Check Spell Data/");
             String fileName = "data.txt";
+            String fileNameReport = "report.txt";
             dir.mkdirs();
             File file = new File(dir, fileName);
+            File fileReport = new File(dir, fileNameReport);
             if (!file.exists()) {
                 try {
                     file.createNewFile();
@@ -188,23 +192,63 @@ public class MainActivity extends AppCompatActivity
                     e.printStackTrace();
                 }
             }
+            if (!fileReport.exists()) {
+                try {
+                    fileReport.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
 
             try {
+                // Ghi dữ liệu tổ hợp âm giữa.
                 FileWriter writer = new FileWriter(file,false);
                 ToHopAmGiua db = new ToHopAmGiua(MainActivity.this);
                 ArrayList<String> arr = db.getAllAmGiua();
                 for(String data: arr){
                     writer.write(data+"\n");
                 }
-                Toast.makeText(MainActivity.this,"Data extract to" +file,Toast.LENGTH_SHORT).show();
                 writer.close();
+
+                //Ghi dữ liệu Report
+                FileWriter writerRp = new FileWriter(fileReport,false);
+                ReportDB dbRp = new ReportDB(MainActivity.this);
+                ArrayList<Report> arrRp = dbRp.getAllReport();
+                for(Report rp: arrRp){
+                    writerRp.write(rp.getContent()+"|"+rp.getDescription()+"\n");
+                }
+                writerRp.close();
+                Toast.makeText(MainActivity.this,"Data extract to" + dir,Toast.LENGTH_SHORT).show();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_report) {
+            //Dialog
+            final Dialog dialog = new Dialog(MainActivity.this);
+            dialog.setTitle("Thank you!");
+            dialog.setContentView(R.layout.report_dialog);
+            dialog.setCancelable(false);
+            dialog.show();
+
+            btnOk = (Button) dialog.findViewById(R.id.btnOkReport);
+            edtSpell = (EditText) dialog.findViewById(R.id.edtSpell);
+            edtComment = (EditText)  dialog.findViewById(R.id.edtComment);
+            btnOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.cancel();
+                    String strSpell = edtSpell.getText().toString();
+                    String strComment = edtComment.getText().toString();
+                    if(!strSpell.isEmpty() && !strComment.isEmpty()){
+                        ReportDB db = new ReportDB(MainActivity.this);
+                        db.addReport(strSpell,strComment);
+                    }
+                    Toast.makeText(MainActivity.this, "Report is successfully!",Toast.LENGTH_SHORT).show();
+                }
+            });
 
         } else if (id == R.id.nav_manage) {
 
