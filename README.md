@@ -16,6 +16,7 @@ Trong tiếng Việt, một âm tiết tiếng Việt được cấu tạo bởi
 - Kiểm tra lỗi chính tả dựa trên luật cấu tạo âm tiết tiếng Việt. Đây là cách tiếp cận mà tôi áp dụng trong quá trình xây dựng ứng dụng.
 #### 2.2. Nguyên âm trong tiếng Việt #### 
 Tổ hợp âm giữa ban đầu được tôi xây dựng dựa trên những nguyên âm không có thanh điệu cơ bản của tiếng Việt.
+Dưới đây chỉ là một phần nhỏ trong dữ liệu về <tổ hợp âm giữa> mà tôi liệt kê được. Dữ liệu này được tôi sử dụng trong lần đầu tiên cài đặt ứng dụng. Với dữ liệu rất ít này, lần sử dụng đầu tiên ứng dũng phát hiện rất nhiều lỗi chính tả. Sau một thời gian ngắn sử dụng tôi đã tập hợp được khoảng vài trăm <tổ hợp âm giữa> và nó còn đang tăng lên trong quá trình sử dụng. Qua quá trình sử dụng đó ứng dụng đã phát hiện lỗi chính tả ngày càng chính xác hơn. Dữ liệu sẽ được cập nhật thường xuyên để sự trải nghiệm ứng dụng trong lần đầu tiên đạt kết quả tốt nhất.
 - Có 12 nguyên âm đơn: a, ă, â, e, ê, i, o, ô, ơ, u, ư, y.
 - Có 32 nguyên âm đôi, còn gọi là trùng nhị âm (AI, AO, AU, ÂU, AY, ÂY, EO, ÊU, IA, IÊ/YÊ, IU, OA, OĂ, OE, OI, ÔI, ƠI, OO, ÔÔ, UA, UĂ, UÂ, ƯA, UÊ, UI, ƯI,UO, UÔ, UƠ, ƯƠ, ƯU, UY)
 - Có 13 nguyên âm ba hay trùng tam âm (IÊU/YÊU, OAI, OAO, OAY, OEO, UAO, UÂY, UÔI, ƯƠI, ƯƠU, UYA, UYÊ, UYU).
