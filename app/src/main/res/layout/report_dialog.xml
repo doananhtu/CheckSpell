@@ -9,9 +9,9 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:paddingLeft="10dp"
-        android:textStyle="italic"
+        android:textStyle="bold"
         android:textSize="18dp"
         android:textColor="#fff"
         android:text="Hãy cung cấp cho chúng tôi lỗi chính tả mà bạn nhận thấy. Sự đóng góp của bạn sẽ được ghi nhận và kiểm duyệt." />
@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:textColorHint="#fff"
+        android:paddingLeft="10dp"
         android:hint="Nhập lỗi chính tả..."
         android:inputType="text" />
 
@@ -29,6 +30,7 @@
         android:id="@+id/edtComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
         android:ems="10"
         android:inputType="textMultiLine"
         android:lines="2"

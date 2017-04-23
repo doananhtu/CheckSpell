@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#f5f5f5"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -11,10 +12,12 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:paddingLeft="10dp"
-            android:textColor="#000"
-            android:text="Trang bắt đầu" />
+            android:textSize="18dp"
+            android:textColor="#393939"
+            android:textStyle="bold"
+            android:text="Trang bắt đầu:" />
 
 
         <EditText
@@ -36,8 +39,10 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/edtBegin"
-            android:textColor="#000"
-            android:text="Số trang kiểm tra" />
+            android:textColor="#393939"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:text="Số trang kiểm tra:" />
 
         <EditText
             android:id="@+id/edtNum"
@@ -55,7 +60,6 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <Button
             android:text="OK"
             android:layout_width="match_parent"

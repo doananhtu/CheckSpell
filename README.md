@@ -35,11 +35,11 @@ Dưới đây chỉ là một phần nhỏ trong dữ liệu về <tổ hợp â
 - **Chức năng học hỏi từ người dùng**: Để phát triển và hoàn thiện khả năng kiểm tra chính tả của tiếng Việt.
 - **Chức năng report**: Do đặc điểm phong phú của tiếng Việt nên không tránh khỏi có những trường hợp xuất hiện các từ sai lỗi chính tả ngoại lệ. Đây là chức năng nhận sự đóng góp từ người dùng. Người dùng sẽ cung cấp một từ cho rằng đó là từ sai lỗi chính tả. Dữ liệu này sẽ được kiểm duyệt và cập nhật.
 #### 4.2. Thử nghiệm ####
-Một số hình ảnh về ứng dụng:
-![Check Spell](https://doc-0k-28-docs.googleusercontent.com/docs/securesc/raqjk4ggf585c3c71suo0ve4d022435s/663ar59t6k3au2ffoqkupm2uohf5vgku/1492934400000/01654361250054516177/01654361250054516177/0Byx01PgDU3c9eGYwYURQZzBKODA?e=download)
-![Check Spell](https://doc-0k-28-docs.googleusercontent.com/docs/securesc/raqjk4ggf585c3c71suo0ve4d022435s/ftn3crgmfqaoghjan5rp4h7ahbg69erh/1492934400000/01654361250054516177/01654361250054516177/0Byx01PgDU3c9Z1lsUE1YNk5qY1k?e=download)
-![Check Spell](https://doc-0c-28-docs.googleusercontent.com/docs/securesc/raqjk4ggf585c3c71suo0ve4d022435s/20d173q8t4e74qnldo4qopu62peqdbnd/1492934400000/01654361250054516177/01654361250054516177/0Byx01PgDU3c9S3BReXJ4SlNLdHM?e=download)
-![Check Spell](https://doc-08-28-docs.googleusercontent.com/docs/securesc/raqjk4ggf585c3c71suo0ve4d022435s/jf6r70i2n8vk34hll03j5frs2nm82c1b/1492934400000/01654361250054516177/01654361250054516177/0Byx01PgDU3c9M3BNelNfdExPZkE?e=download)
+- Một số hình ảnh về ứng dụng:
+![Check Spell](https://scontent.fhan4-1.fna.fbcdn.net/v/t1.0-0/p261x260/18056753_650771051799827_8757446253516002595_n.jpg?oh=839c8fd92b833dbf10ea25a1657b1e06&oe=59999050)
+![Check Spell](https://scontent.fhan4-1.fna.fbcdn.net/v/t1.0-0/s526x296/18118470_650771055133160_4852641497824534667_n.jpg?oh=9ba8b198e377e11a5ab8fc3a16cc665d&oe=594D075F)
+![Check Spell](https://scontent.fhan4-1.fna.fbcdn.net/v/t1.0-0/s526x296/18056953_650771075133158_7392883524875480846_n.jpg?oh=225980fc2e0dcff29caa714cd1c05b3e&oe=5986BA46)
+![Check Spell](https://scontent.fhan4-1.fna.fbcdn.net/v/t1.0-9/18056987_650771081799824_6490378485090576900_n.jpg?oh=5d1e760b86dfe3de8e59524f1e0f5709&oe=5990307B)
 ---
 ### 5. Kết luận ###
 - Ứng dụng này hiện chưa phải là một ứng dụng hoàn chỉnh và khả năng làm việc với độ chính xác cũng chưa cao. Do thời gian nghiên cứu và làm project có hạn nên không tránh khỏi những thiếu sót trong việc xây dựng ứng dụng. Do tính chất học hỏi của ứng dụng nên ứng dụng  sẽ dần hoàn thiện theo thời gian.
