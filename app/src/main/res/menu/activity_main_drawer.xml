@@ -7,13 +7,13 @@
             android:icon="@drawable/ic_spellcheck_black_24dp"
             android:title="Check Spelling" />
         <item
-            android:id="@+id/nav_training"
-            android:icon="@drawable/ic_extension_black_24dp"
-            android:title="Coming soon" />
+            android:id="@+id/nav_extractData"
+            android:icon="@drawable/ic_input_black_24dp"
+            android:title="Extract data" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Coming soon" />
+            android:icon="@drawable/ic_report_problem_black_24dp"
+            android:title="Report" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

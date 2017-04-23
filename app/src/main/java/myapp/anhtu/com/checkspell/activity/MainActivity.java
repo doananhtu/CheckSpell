@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,11 +28,14 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import myapp.anhtu.com.checkspell.R;
+import myapp.anhtu.com.checkspell.database.ToHopAmGiua;
 import myapp.anhtu.com.checkspell.entity.ContentAdapter;
 import myapp.anhtu.com.checkspell.entity.Page;
 import myapp.anhtu.com.checkspell.entity.Result;
@@ -171,7 +175,34 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-        } else if (id == R.id.nav_training) {
+        } else if (id == R.id.nav_extractData) {
+            File sdCard = Environment.getExternalStorageDirectory();
+            File dir = new File (sdCard.getAbsolutePath() + "/Check Spell Data/");
+            String fileName = "data.txt";
+            dir.mkdirs();
+            File file = new File(dir, fileName);
+            if (!file.exists()) {
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            try {
+                FileWriter writer = new FileWriter(file,false);
+                ToHopAmGiua db = new ToHopAmGiua(MainActivity.this);
+                ArrayList<String> arr = db.getAllAmGiua();
+                for(String data: arr){
+                    writer.write(data+"\n");
+                }
+                Toast.makeText(MainActivity.this,"Data extract to" +file,Toast.LENGTH_SHORT).show();
+                writer.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         } else if (id == R.id.nav_slideshow) {
 
