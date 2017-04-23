@@ -4,25 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="myapp.anhtu.com.checkspell.activity.MainActivity"
-    tools:showIn="@layout/app_bar_main">
-
+    tools:context="myapp.anhtu.com.checkspell.activity.SearchResultActivity">
     <LinearLayout
-        android:background="#efefef"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ListView
-            android:id="@+id/ListView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/listResult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
             android:background="#d7d7d7"
             android:dividerHeight="15dp" />
-
     </LinearLayout>
 </android.support.v7.widget.LinearLayoutCompat>

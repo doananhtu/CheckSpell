@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#0fd3ed"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="10dp"
+        android:textStyle="italic"
+        android:textSize="18dp"
+        android:textColor="#fff"
+        android:text="Hãy cung cấp cho chúng tôi lỗi chính tả mà bạn nhận thấy. Sự đóng góp của bạn sẽ được ghi nhận và kiểm duyệt." />
+
+    <EditText
+        android:id="@+id/edtSpell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColorHint="#fff"
+        android:hint="Nhập lỗi chính tả..."
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edtComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:lines="2"
+        android:maxLines="4"
+        android:textColorHint="#fff"
+        android:hint="Để lại nhận xét..." />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:text="OK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnOkReport"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textAlignment="textEnd"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:background="#0fd3ed" />
+    </LinearLayout>
+
+</LinearLayout>
