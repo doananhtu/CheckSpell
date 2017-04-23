@@ -35,7 +35,7 @@ Dưới đây chỉ là một phần nhỏ trong dữ liệu về <tổ hợp â
 - **Chức năng học hỏi từ người dùng**: Để phát triển và hoàn thiện khả năng kiểm tra chính tả của tiếng Việt.
 - **Chức năng report**: Do đặc điểm phong phú của tiếng Việt nên không tránh khỏi có những trường hợp xuất hiện các từ sai lỗi chính tả ngoại lệ. Đây là chức năng nhận sự đóng góp từ người dùng. Người dùng sẽ cung cấp một từ cho rằng đó là từ sai lỗi chính tả. Dữ liệu này sẽ được kiểm duyệt và cập nhật.
 #### 4.2. Thử nghiệm ####
-Một số hình ảnh về ứng dụng:
+- Một số hình ảnh về ứng dụng:
 ![Check Spell](https://scontent.fhan4-1.fna.fbcdn.net/v/t1.0-0/p261x260/18056753_650771051799827_8757446253516002595_n.jpg?oh=839c8fd92b833dbf10ea25a1657b1e06&oe=59999050)
 ![Check Spell](https://scontent.fhan4-1.fna.fbcdn.net/v/t1.0-0/s526x296/18118470_650771055133160_4852641497824534667_n.jpg?oh=9ba8b198e377e11a5ab8fc3a16cc665d&oe=594D075F)
 ![Check Spell](https://scontent.fhan4-1.fna.fbcdn.net/v/t1.0-0/s526x296/18056953_650771075133158_7392883524875480846_n.jpg?oh=225980fc2e0dcff29caa714cd1c05b3e&oe=5986BA46)

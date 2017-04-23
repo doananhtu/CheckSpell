@@ -151,7 +151,6 @@ public class MainActivity extends AppCompatActivity
             final Dialog dialog = new Dialog(MainActivity.this);
             dialog.setTitle("Nhập số trang muốn kiểm tra chính tả.");
             dialog.setContentView(R.layout.customize_dialog);
-            dialog.setCancelable(false);
             dialog.show();
 
             btnOk = (Button) dialog.findViewById(R.id.btnOk);
@@ -244,7 +243,7 @@ public class MainActivity extends AppCompatActivity
                     String strComment = edtComment.getText().toString();
                     if(!strSpell.isEmpty() && !strComment.isEmpty()){
                         ReportDB db = new ReportDB(MainActivity.this);
-                        db.addReport(strSpell,strComment);
+                        db.addReport(strSpell.toUpperCase(),strComment);
                     }
                     Toast.makeText(MainActivity.this, "Report is successfully!",Toast.LENGTH_SHORT).show();
                 }

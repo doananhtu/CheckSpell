@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import myapp.anhtu.com.checkspell.database.ExceptionDB;
 import myapp.anhtu.com.checkspell.database.ToHopAmGiua;
 import myapp.anhtu.com.checkspell.entity.Page;
 import myapp.anhtu.com.checkspell.entity.Result;
@@ -47,8 +48,9 @@ public class CheckSpellUtils {
 
     public ArrayList<Result> checkSpell(ArrayList<Page> listPage, Context context, int index, int num){
 
-        // Lấy dữ liệu lần đầu về tổ hơp âm giữa. Dữ liệu sẽ được cập nhật trong quá trình sử dụng.
+        // Lấy dữ liệu lần đầu về tổ hơp âm giữa và ngoại lệ. Dữ liệu sẽ được cập nhật trong quá trình sử dụng.
         ToHopAmGiua db = new ToHopAmGiua(context);
+        ExceptionDB dbEx = new ExceptionDB(context);
         if(db.getAllAmGiua().size() == 0){
             Toast.makeText(context,"Loading data...",Toast.LENGTH_SHORT).show();
             ArrayList<String> amGiua = loadingData(context);
@@ -108,8 +110,15 @@ public class CheckSpellUtils {
                         result.add(new Result(words[i],listPage.get(j).getPageNumber()));
                         continue;
                     }
-                    /*Cuối cùng kiểm tra tổ hợp âm giữa có trong cơ sở dữ liệu không?*/
+                    /* Kiểm tra tổ hợp âm giữa có trong cơ sở dữ liệu không?*/
                     check = rule5(words[i],db);
+                    if(check == false){
+                        result.add(new Result(words[i],listPage.get(j).getPageNumber()));
+                        continue;
+                    }
+
+                    /* Cuối cùng kiểm tra trường hợp ngoại lệ*/
+                    check = rule6(words[i],dbEx);
                     if(check == false){
                         result.add(new Result(words[i],listPage.get(j).getPageNumber()));
                         continue;
@@ -245,5 +254,17 @@ public class CheckSpellUtils {
             }
         }
         return false;
+    }
+
+    /* Luật số 6: Kiểm tra từ có rơi vào trường hợp ngoại lệ không. */
+    public boolean rule6(String word, ExceptionDB db){
+        ArrayList<String> listEx = db.getAllEx();
+        if(listEx.size() == 0) return true;
+        for(String item: listEx){
+            if(item.equals(word.toUpperCase())){
+                return false;
+            }
+        }
+        return true;
     }
 }
