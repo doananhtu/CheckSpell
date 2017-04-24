@@ -1,9 +1,11 @@
 package myapp.anhtu.com.checkspell.activity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -85,12 +87,25 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Exit");
+        builder.setCancelable(false);
+        builder.setMessage("Bạn muốn thoát khỏi ứng dụng!");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MainActivity.this.finish();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
@@ -111,6 +126,7 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<Page> listPage = readFile();
                 ArrayList<Result> list = SearchUtils.search(listPage,query);
                 searchResultActivity.putExtra("listResult",list);
+                searchResultActivity.putExtra("path",path);
                 startActivity(searchResultActivity);
                 return false;
             }
@@ -306,6 +322,7 @@ public class MainActivity extends AppCompatActivity
         arr = readFile();
         adapter = new ContentAdapter(MainActivity.this,R.layout.page,arr);
         lv.setAdapter(adapter);
+        lv.setItemChecked(5,true);
     }
     protected ArrayList<Page> readFile(){
         arr = new ArrayList<>();
