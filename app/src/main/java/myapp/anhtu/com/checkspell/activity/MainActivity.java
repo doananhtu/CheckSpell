@@ -1,5 +1,6 @@
 package myapp.anhtu.com.checkspell.activity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
@@ -14,7 +15,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<Page> listPage = readFile();
                 ArrayList<Result> list = SearchUtils.search(listPage,query);
                 searchResultActivity.putExtra("listResult",list);
+                searchResultActivity.putExtra("path",path);
                 startActivity(searchResultActivity);
                 return false;
             }
